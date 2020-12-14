@@ -36,7 +36,7 @@ public class Main {
 
         Order order = new Order();
         medunica.getActiveAbilities().add(order);
-        medunica.runAbility(order, " поскорее выдать им одежду");
+        medunica.runAbility(order, "поскорее выдать им одежду");
 
         Walk walk = new Walk();
         vintik.getPassiveAbilities().add(walk);
