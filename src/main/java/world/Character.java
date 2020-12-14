@@ -2,13 +2,15 @@ package world;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
 import world.ability.passive.PassiveAbility;
 import world.ability.active.ActiveAbility;
 
 public class Character {
     private String name;
     private List<PassiveAbility> passiveAbilities = new ArrayList<>();
-    private List<ActiveAbility> activeAbilities   = new ArrayList<>();
+    private List<ActiveAbility> activeAbilities = new ArrayList<>();
 
     public Character(String name) {
         this.name = name;
@@ -47,16 +49,21 @@ public class Character {
 
     @Override
     public String toString() {
-        return name;
+        return "Character {name = \"" + name + "\"}";
     }
 
-//    @Override
-//    public boolean equals(Object o) {
-//
-//    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, passiveAbilities, activeAbilities);
+    }
 
-//    @Override
-//    public int hashCode() {
-//
-//    }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!(obj instanceof Character)) return false;
+        Character c = (Character) obj;
+        return name.equals(c.name) &&
+                passiveAbilities.equals(c.getPassiveAbilities()) &&
+                activeAbilities.equals(c.getActiveAbilities());
+    }
 }

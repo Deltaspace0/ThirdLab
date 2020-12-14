@@ -7,6 +7,7 @@ import world.building.House;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class City {
     private String name;
@@ -16,6 +17,18 @@ public class City {
 
     public City(String name) {
         this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public List<Character> getCharacters() {
+        return characters;
+    }
+
+    public List<Building> getBuildings() {
+        return buildings;
     }
 
     public void setTime(TimeEnum time) {
@@ -34,7 +47,7 @@ public class City {
                 System.out.println("Пришла ночь в " + name);
                 break;
             default:
-                System.out.println("Не пойми что пришло в " + name);
+                System.out.println("Что-то странное пришло в " + name);
         }
     }
 
@@ -54,7 +67,7 @@ public class City {
                 newCharacter = new Character("Медуница");
                 break;
             default:
-                System.out.println("Не пойми что только что попыталось появиться");
+                System.out.println("Что-то странное только что попыталось появиться");
                 return null;
         }
         characters.add(newCharacter);
@@ -76,5 +89,25 @@ public class City {
         }
         buildings.add(newBuilding);
         return newBuilding;
+    }
+
+    @Override
+    public String toString() {
+        return "City {name = \"" + name + "\"}";
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, characters, buildings);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!(obj instanceof City)) return false;
+        City c = (City) obj;
+        return name.equals(c.getName()) &&
+                characters.equals(c.getCharacters()) &&
+                buildings.equals(c.getBuildings());
     }
 }
