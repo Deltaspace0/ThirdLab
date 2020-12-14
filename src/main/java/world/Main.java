@@ -2,16 +2,25 @@ package world;
 
 import world.ability.active.*;
 import world.ability.passive.*;
+import world.building.Building;
+import world.building.BuildingEnum;
 
 public class Main {
     public static void main(String[] args) {
         City greenCity = new City("Зелёный город");
         greenCity.setTime(TimeEnum.MORNING);
+        Building hospital1  = greenCity.createBuilding(BuildingEnum.HOSPITAL, "Больничка №1");
+        Building romashka   = greenCity.createBuilding(BuildingEnum.HOUSE, "Ромашка");
+        Building oduvanchik = greenCity.createBuilding(BuildingEnum.HOUSE, "Одуванчик");
+        Building tulpan     = greenCity.createBuilding(BuildingEnum.HOUSE, "Тюльпан");
 
-        Character cvetik   = greenCity.createCharacter(CharacterEnum.CVETIK);
-        Character vintik   = greenCity.createCharacter(CharacterEnum.VINTIK);
-        Character shpuntik = greenCity.createCharacter(CharacterEnum.SHPUNTIK);
-        Character medunica = greenCity.createCharacter(CharacterEnum.MEDUNICA);
+        Character cvetik    = greenCity.createCharacter(CharacterEnum.CVETIK);
+        Character vintik    = greenCity.createCharacter(CharacterEnum.VINTIK);
+        Character shpuntik  = greenCity.createCharacter(CharacterEnum.SHPUNTIK);
+        Character medunica  = greenCity.createCharacter(CharacterEnum.MEDUNICA);
+
+        hospital1.enter(vintik);
+        hospital1.enter(shpuntik);
 
         Compose composeSong = new Compose();
         cvetik.getActiveAbilities().add(composeSong);
@@ -37,6 +46,8 @@ public class Main {
         Order order = new Order();
         medunica.getActiveAbilities().add(order);
         medunica.runAbility(order, "поскорее выдать им одежду");
+        hospital1.leave(vintik);
+        hospital1.leave(shpuntik);
 
         Walk walk = new Walk();
         vintik.getPassiveAbilities().add(walk);

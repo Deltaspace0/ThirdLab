@@ -41,6 +41,10 @@ public class Character {
         return abilityExists;
     }
 
+    public String getName() {
+        return name;
+    }
+
     @Override
     public String toString() {
         return name;

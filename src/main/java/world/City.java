@@ -1,5 +1,10 @@
 package world;
 
+import world.building.Building;
+import world.building.BuildingEnum;
+import world.building.Hospital;
+import world.building.House;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,6 +12,7 @@ public class City {
     private String name;
     private TimeEnum time;
     private List<Character> characters = new ArrayList<>();
+    private List<Building> buildings = new ArrayList<>();
 
     public City(String name) {
         this.name = name;
@@ -48,10 +54,27 @@ public class City {
                 newCharacter = new Character("Медуница");
                 break;
             default:
-                newCharacter = new Character("");
                 System.out.println("Не пойми что только что попыталось появиться");
+                return null;
         }
         characters.add(newCharacter);
         return newCharacter;
+    }
+
+    public Building createBuilding(BuildingEnum b, String name) {
+        Building newBuilding;
+        switch (b) {
+            case HOSPITAL:
+                newBuilding = new Hospital(name);
+                break;
+            case HOUSE:
+                newBuilding = new House(name);
+                break;
+            default:
+                System.out.println("Да таких зданий не существует!");
+                return null;
+        }
+        buildings.add(newBuilding);
+        return newBuilding;
     }
 }
