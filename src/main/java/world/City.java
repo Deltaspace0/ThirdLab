@@ -12,8 +12,8 @@ import java.util.Objects;
 public class City {
     private String name;
     private TimeEnum time;
-    private List<Character> characters = new ArrayList<>();
-    private List<Building> buildings = new ArrayList<>();
+    protected List<Character> characters = new ArrayList<>();
+    protected List<Building> buildings = new ArrayList<>();
 
     public City(String name) {
         this.name = name;
