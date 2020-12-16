@@ -55,16 +55,16 @@ public class City {
         Character newCharacter;
         switch (c) {
             case CVETIK:
-                newCharacter = new Character("Цветик");
+                newCharacter = new Character("Цветик", GenderEnum.MALE);
                 break;
             case VINTIK:
-                newCharacter = new Character("Винтик");
+                newCharacter = new Character("Винтик", GenderEnum.MALE);
                 break;
             case SHPUNTIK:
-                newCharacter = new Character("Шпунтик");
+                newCharacter = new Character("Шпунтик", GenderEnum.MALE);
                 break;
             case MEDUNICA:
-                newCharacter = new Character("Медуница");
+                newCharacter = new Character("Медуница", GenderEnum.FEMALE);
                 break;
             default:
                 System.out.println("Что-то странное только что попыталось появиться");

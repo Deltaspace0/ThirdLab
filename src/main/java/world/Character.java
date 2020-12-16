@@ -9,11 +9,13 @@ import world.ability.active.ActiveAbility;
 
 public class Character {
     private String name;
+    private GenderEnum gender;
     private List<PassiveAbility> passiveAbilities = new ArrayList<>();
     private List<ActiveAbility> activeAbilities = new ArrayList<>();
 
-    public Character(String name) {
+    public Character(String name, GenderEnum gender) {
         this.name = name;
+        this.gender = gender;
     }
 
     public List<PassiveAbility> getPassiveAbilities() {
