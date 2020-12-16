@@ -8,7 +8,6 @@ import world.building.BuildingEnum;
 public class Main {
     public static void main(String[] args) {
         City greenCity = new City("Зелёный город");
-        greenCity.setTime(TimeEnum.MORNING);
         Building hospital1  = greenCity.createBuilding(BuildingEnum.HOSPITAL, "Больничка №1");
         Building romashka   = greenCity.createBuilding(BuildingEnum.HOUSE, "Ромашка");
         Building oduvanchik = greenCity.createBuilding(BuildingEnum.HOUSE, "Одуванчик");
@@ -21,6 +20,8 @@ public class Main {
 
         hospital1.enter(vintik);
         hospital1.enter(shpuntik);
+
+        greenCity.setTime(TimeEnum.MORNING);
 
         Compose composeSong = new Compose();
         cvetik.getActiveAbilities().add(composeSong);
