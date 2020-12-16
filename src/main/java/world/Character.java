@@ -49,6 +49,10 @@ public class Character {
         return name;
     }
 
+    public GenderEnum getGender() {
+        return gender;
+    }
+
     @Override
     public String toString() {
         return "Character {name = \"" + name + "\"}";
@@ -64,7 +68,8 @@ public class Character {
         if (this == obj) return true;
         if (!(obj instanceof Character)) return false;
         Character c = (Character) obj;
-        return name.equals(c.name) &&
+        return gender.equals(c.getGender()) &&
+                name.equals(c.getName()) &&
                 passiveAbilities.equals(c.getPassiveAbilities()) &&
                 activeAbilities.equals(c.getActiveAbilities());
     }

@@ -16,10 +16,6 @@ public abstract class Building {
         this.name = name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getName() {
         return name;
     }
@@ -46,6 +42,6 @@ public abstract class Building {
         if (!(obj instanceof  Building))
             return false;
         Building b = (Building) obj;
-        return name.equals(b.name) && inhabitants.equals(b.getInhabitants());
+        return name.equals(b.getName()) && inhabitants.equals(b.getInhabitants());
     }
 }
