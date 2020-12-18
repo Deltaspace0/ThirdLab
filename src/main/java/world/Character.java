@@ -55,22 +55,24 @@ public class Character {
 
     @Override
     public String toString() {
-        return "Character {name = \"" + name + "\"}";
+        return "Character{" +
+                "name='" + name + '\'' +
+                ", gender=" + gender +
+                ", passiveAbilities=" + passiveAbilities +
+                ", activeAbilities=" + activeAbilities +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Character character = (Character) o;
+        return Objects.equals(name, character.name) && gender == character.gender && Objects.equals(passiveAbilities, character.passiveAbilities) && Objects.equals(activeAbilities, character.activeAbilities);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, passiveAbilities, activeAbilities);
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (!(obj instanceof Character)) return false;
-        Character c = (Character) obj;
-        return gender.equals(c.getGender()) &&
-                name.equals(c.getName()) &&
-                passiveAbilities.equals(c.getPassiveAbilities()) &&
-                activeAbilities.equals(c.getActiveAbilities());
+        return Objects.hash(name, gender, passiveAbilities, activeAbilities);
     }
 }

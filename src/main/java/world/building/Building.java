@@ -25,9 +25,11 @@ public abstract class Building {
     }
 
     @Override
-    public String toString() {
-        return "Building {name = \"" + name +
-                "\", inhabitants = " + inhabitants + "}";
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Building building = (Building) o;
+        return Objects.equals(name, building.name) && Objects.equals(inhabitants, building.inhabitants);
     }
 
     @Override
@@ -36,12 +38,11 @@ public abstract class Building {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (!(obj instanceof  Building))
-            return false;
-        Building b = (Building) obj;
-        return name.equals(b.getName()) && inhabitants.equals(b.getInhabitants());
+    public String toString() {
+        return "Building{" +
+                "name='" + name + '\'' +
+                ", inhabitants=" + inhabitants +
+                '}';
     }
+
 }

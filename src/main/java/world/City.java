@@ -51,6 +51,29 @@ public class City {
         }
     }
 
+    @Override
+    public String toString() {
+        return "City{" +
+                "name='" + name + '\'' +
+                ", time=" + time +
+                ", characters=" + characters +
+                ", buildings=" + buildings +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        City city = (City) o;
+        return Objects.equals(name, city.name) && time == city.time && Objects.equals(characters, city.characters) && Objects.equals(buildings, city.buildings);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, time, characters, buildings);
+    }
+
     public Character createCharacter(CharacterEnum c) {
         Character newCharacter;
         switch (c) {
@@ -91,23 +114,4 @@ public class City {
         return newBuilding;
     }
 
-    @Override
-    public String toString() {
-        return "City {name = \"" + name + "\"}";
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, characters, buildings);
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (!(obj instanceof City)) return false;
-        City c = (City) obj;
-        return name.equals(c.getName()) &&
-                characters.equals(c.getCharacters()) &&
-                buildings.equals(c.getBuildings());
-    }
 }

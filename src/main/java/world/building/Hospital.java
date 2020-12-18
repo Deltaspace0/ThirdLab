@@ -18,23 +18,15 @@ public class Hospital extends Building {
     }
 
     @Override
+    public String toString() {
+        return "Hospital{" +
+                "name='" + name + '\'' +
+                '}';
+    }
+
+    @Override
     public void enter(Character c) {
         inhabitants.add(c);
         System.out.println(c.getName() + " пришёл в больничку \""+name+"\"");
-    }
-
-    @Override
-    public String toString() {
-        return super.toString();
-    }
-
-    @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
     }
 }

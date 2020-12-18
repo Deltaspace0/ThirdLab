@@ -1,5 +1,7 @@
 package world;
 
+import java.util.Objects;
+
 public class Song {
     private String name;
 
@@ -13,16 +15,21 @@ public class Song {
 
     @Override
     public String toString() {
-        return super.toString();
+        return "Song{" +
+                "name='" + name + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Song song = (Song) o;
+        return Objects.equals(name, song.name);
     }
 
     @Override
     public int hashCode() {
-        return super.hashCode();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
+        return Objects.hash(name);
     }
 }
