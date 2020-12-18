@@ -10,25 +10,13 @@ import java.util.List;
 import java.util.Objects;
 
 public class City {
-    private String name;
+    private final String name;
     private TimeEnum time;
     protected List<Character> characters = new ArrayList<>();
     protected List<Building> buildings = new ArrayList<>();
 
     public City(String name) {
         this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public List<Character> getCharacters() {
-        return characters;
-    }
-
-    public List<Building> getBuildings() {
-        return buildings;
     }
 
     public void setTime(TimeEnum time) {

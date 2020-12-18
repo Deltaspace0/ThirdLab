@@ -8,22 +8,22 @@ import world.ability.passive.PassiveAbility;
 import world.ability.active.ActiveAbility;
 
 public class Character {
-    private String name;
-    private GenderEnum gender;
-    private List<PassiveAbility> passiveAbilities = new ArrayList<>();
-    private List<ActiveAbility> activeAbilities = new ArrayList<>();
+    private final String name;
+    private final GenderEnum gender;
+    private final List<PassiveAbility> passiveAbilities = new ArrayList<>();
+    private final List<ActiveAbility<?>> activeAbilities = new ArrayList<>();
 
     public Character(String name, GenderEnum gender) {
         this.name = name;
         this.gender = gender;
     }
 
-    public List<PassiveAbility> getPassiveAbilities() {
-        return passiveAbilities;
+    public void addAbility(PassiveAbility ability) {
+        passiveAbilities.add(ability);
     }
 
-    public List<ActiveAbility> getActiveAbilities() {
-        return activeAbilities;
+    public <T> void addAbility(ActiveAbility<T> ability) {
+        activeAbilities.add(ability);
     }
 
     public void runAbility(PassiveAbility ability) {
@@ -47,10 +47,6 @@ public class Character {
 
     public String getName() {
         return name;
-    }
-
-    public GenderEnum getGender() {
-        return gender;
     }
 
     @Override

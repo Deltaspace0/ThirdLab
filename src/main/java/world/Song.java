@@ -3,7 +3,7 @@ package world;
 import java.util.Objects;
 
 public class Song {
-    private String name;
+    private final String name;
 
     public Song(String name) {
         this.name = name;
