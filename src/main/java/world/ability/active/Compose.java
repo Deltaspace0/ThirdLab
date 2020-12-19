@@ -2,6 +2,8 @@ package world.ability.active;
 
 import world.Song;
 
+import java.util.Objects;
+
 public class Compose implements ActiveAbility<String> {
     private Song song;
 
@@ -17,16 +19,22 @@ public class Compose implements ActiveAbility<String> {
 
     @Override
     public String toString() {
-        return super.toString();
+        return "Compose{" +
+                "song=" + song +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Compose compose = (Compose) o;
+        return Objects.equals(song, compose.song);
     }
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+        return Objects.hash(song);
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
-    }
 }
