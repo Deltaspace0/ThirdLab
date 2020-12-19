@@ -101,5 +101,4 @@ public class City {
         buildings.add(newBuilding);
         return newBuilding;
     }
-
 }

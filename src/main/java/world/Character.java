@@ -32,6 +32,10 @@ public class Character {
         }
     }
 
+    public GenderEnum getGender() {
+        return gender;
+    }
+
     public <T> void runAbility(ActiveAbility<T> ability, T item) {
         if (checkAbility(activeAbilities, ability)) {
             System.out.println(name + " " + ability.run(item));

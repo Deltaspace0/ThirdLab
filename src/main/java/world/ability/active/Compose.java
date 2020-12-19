@@ -1,16 +1,32 @@
 package world.ability.active;
 
+import world.GenderEnum;
 import world.Song;
 
 import java.util.Objects;
 
 public class Compose implements ActiveAbility<String> {
     private Song song;
+    private GenderEnum gender;
 
     @Override
     public String run(String item) {
         song = new Song(item);
-        return "сочинил песенку " + item;
+        String action;
+        switch (gender) {
+            case FEMALE:
+                action = "сочинила";
+                break;
+            case MALE:
+            default:
+                action = "сочинил";
+        }
+        return action + " песенку " + item;
+    }
+
+    @Override
+    public void setGender(GenderEnum gender) {
+        this.gender = gender;
     }
 
     public Song getSong() {

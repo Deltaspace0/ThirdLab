@@ -21,45 +21,53 @@ public class Main {
         greenCity.setTime(TimeEnum.MORNING);
 
         Compose composeSong = new Compose();
+        composeSong.setGender(GenderEnum.MALE);
         cvetik.addAbility(composeSong);
         cvetik.runAbility(composeSong, "о зарядке");
         Song chargeSong = composeSong.getSong();
 
         WakeUp wakeUp = new WakeUp();
+        wakeUp.setGender(GenderEnum.MALE);
         vintik.addAbility(wakeUp);
         shpuntik.addAbility(wakeUp);
         vintik.runAbility(wakeUp);
         shpuntik.runAbility(wakeUp);
 
         Demand demand = new Demand();
+        demand.setGender(GenderEnum.MALE);
         vintik.addAbility(demand);
         shpuntik.addAbility(demand);
         vintik.runAbility(demand, "их сейчас же выписали");
         shpuntik.runAbility(demand, "их немедленно выписали");
 
         Fear fear = new Fear();
+        fear.setGender(GenderEnum.FEMALE);
         medunica.addAbility(fear);
         medunica.runAbility(fear, "шума");
 
         Order order = new Order();
+        order.setGender(GenderEnum.FEMALE);
         medunica.addAbility(order);
         medunica.runAbility(order, "поскорее выдать им одежду");
         hospital1.leave(vintik);
         hospital1.leave(shpuntik);
 
         Walk walk = new Walk();
+        walk.setGender(GenderEnum.MALE);
         vintik.addAbility(walk);
         shpuntik.addAbility(walk);
         vintik.runAbility(walk);
         shpuntik.runAbility(walk);
 
         Sing sing = new Sing();
+        sing.setGender(GenderEnum.MALE);
         vintik.addAbility(sing);
         shpuntik.addAbility(sing);
         vintik.runAbility(sing, chargeSong);
         shpuntik.runAbility(sing, chargeSong);
 
         Charge charge = new Charge();
+        charge.setGender(GenderEnum.MALE);
         vintik.addAbility(charge);
         shpuntik.addAbility(charge);
         vintik.runAbility(charge);

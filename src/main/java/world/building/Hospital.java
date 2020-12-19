@@ -10,7 +10,16 @@ public class Hospital extends Building {
     @Override
     public void leave(Character c) {
         if (!inhabitants.contains(c)) {
-            System.out.println("Там не был " + c.getName() + ", он не может покинуть больничку");
+            String action;
+            switch (c.getGender()) {
+                case FEMALE:
+                    action = "была ";
+                    break;
+                case MALE:
+                default:
+                    action = "был ";
+            }
+            System.out.println("Там не " + action + c.getName() + ", он не может покинуть больничку");
             return;
         }
         inhabitants.remove(c);
