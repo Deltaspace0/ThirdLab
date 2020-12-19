@@ -10,6 +10,27 @@ public class Compose implements ActiveAbility<String> {
     private GenderEnum gender;
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Compose compose = (Compose) o;
+        return Objects.equals(song, compose.song) && gender == compose.gender;
+    }
+
+    @Override
+    public String toString() {
+        return "Compose{" +
+                "song=" + song +
+                ", gender=" + gender +
+                '}';
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(song, gender);
+    }
+
+    @Override
     public String run(String item) {
         song = new Song(item);
         String action;
@@ -31,26 +52,6 @@ public class Compose implements ActiveAbility<String> {
 
     public Song getSong() {
         return song;
-    }
-
-    @Override
-    public String toString() {
-        return "Compose{" +
-                "song=" + song +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Compose compose = (Compose) o;
-        return Objects.equals(song, compose.song);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(song);
     }
 
 }
