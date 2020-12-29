@@ -33,8 +33,9 @@ public class WakeUp implements PassiveAbility {
             case FEMALE:
                 return "проснулась";
             case MALE:
-            default:
                 return "проснулся";
+            default:
+                return "проснулись";
         }
     }
 

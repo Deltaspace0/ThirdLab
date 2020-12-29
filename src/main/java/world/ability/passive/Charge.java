@@ -15,8 +15,10 @@ public class Charge implements PassiveAbility {
                 action = "делала";
                 break;
             case MALE:
-            default:
                 action = "делал";
+                break;
+            default:
+                action = "делали";
         }
         return action + " зарядку";
     }

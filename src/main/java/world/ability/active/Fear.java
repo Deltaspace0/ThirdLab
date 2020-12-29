@@ -35,8 +35,10 @@ public class Fear implements ActiveAbility<String> {
                 action = "боялась ";
                 break;
             case MALE:
-            default:
                 action = "боялся ";
+                break;
+            default:
+                action = "боялись ";
         }
         return "больше всего на свете " + action + item;
     }

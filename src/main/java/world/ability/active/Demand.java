@@ -35,8 +35,10 @@ public class Demand implements ActiveAbility<String> {
                 action = "стала";
                 break;
             case MALE:
-            default:
                 action = "стал";
+                break;
+            default:
+                action = "стали";
         }
         return action + " требовать, чтобы " + item;
     }

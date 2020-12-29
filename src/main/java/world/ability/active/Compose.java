@@ -39,8 +39,10 @@ public class Compose implements ActiveAbility<String> {
                 action = "сочинила";
                 break;
             case MALE:
-            default:
                 action = "сочинил";
+                break;
+            default:
+                action = "сочинили";
         }
         return action + " песенку " + item;
     }

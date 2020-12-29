@@ -35,8 +35,10 @@ public class Order implements ActiveAbility<String> {
                 action = "распорядилась ";
                 break;
             case MALE:
-            default:
                 action = "распорядился ";
+                break;
+            default:
+                action = "распорядились ";
         }
         return action + item;
     }

@@ -36,8 +36,10 @@ public class Sing implements ActiveAbility<Song> {
                 action = "распевала";
                 break;
             case MALE:
-            default:
                 action = "распевал";
+                break;
+            default:
+                action = "распевали";
         }
         return action + " песенку " + song.getName() + ": \"" + song.getContent() + "\"";
     }

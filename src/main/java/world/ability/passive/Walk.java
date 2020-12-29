@@ -15,8 +15,10 @@ public class Walk implements PassiveAbility {
                 action = "шагала";
                 break;
             case MALE:
-            default:
                 action = "шагал";
+                break;
+            default:
+                action = "шагали";
         }
         return action + " по улицам";
     }
