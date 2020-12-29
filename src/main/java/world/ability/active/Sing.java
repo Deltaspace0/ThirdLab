@@ -39,7 +39,7 @@ public class Sing implements ActiveAbility<Song> {
             default:
                 action = "распевал";
         }
-        return action + " песенку " + song.getName();
+        return action + " песенку " + song.getName() + ": \"" + song.getContent() + "\"";
     }
 
     @Override

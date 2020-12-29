@@ -25,6 +25,7 @@ public class Main {
         cvetik.addAbility(composeSong);
         cvetik.runAbility(composeSong, "о зарядке");
         Song chargeSong = composeSong.getSong();
+        chargeSong.setContent("Начинай с зарядки день, Разгоняй движеньем лень.");
 
         WakeUp wakeUp = new WakeUp();
         wakeUp.setGender(GenderEnum.MALE);

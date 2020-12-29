@@ -4,9 +4,19 @@ import java.util.Objects;
 
 public class Song {
     private final String name;
+    private String content;
 
     public Song(String name) {
         this.name = name;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        System.out.println("Текст песенки " + name + " был такой: \"" + content + "\"");
+        this.content = content;
     }
 
     public String getName() {
