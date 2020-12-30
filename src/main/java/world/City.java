@@ -77,6 +77,9 @@ public class City {
             case MEDUNICA:
                 newCharacter = new Character("Медуница", GenderEnum.FEMALE);
                 break;
+            case MALYSHKA:
+                newCharacter = new Character("Малышка", GenderEnum.FEMALE);
+                break;
             default:
                 System.out.println("Что-то странное только что попыталось появиться");
                 return null;

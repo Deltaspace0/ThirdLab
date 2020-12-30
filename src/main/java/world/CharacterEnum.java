@@ -4,5 +4,6 @@ public enum CharacterEnum {
     CVETIK,
     VINTIK,
     SHPUNTIK,
-    MEDUNICA
+    MEDUNICA,
+    MALYSHKA
 }

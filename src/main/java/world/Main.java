@@ -14,6 +14,7 @@ public class Main {
         Character vintik    = greenCity.createCharacter(CharacterEnum.VINTIK);
         Character shpuntik  = greenCity.createCharacter(CharacterEnum.SHPUNTIK);
         Character medunica  = greenCity.createCharacter(CharacterEnum.MEDUNICA);
+        Character malyshka  = greenCity.createCharacter(CharacterEnum.MALYSHKA);
 
         hospital1.enter(vintik);
         hospital1.enter(shpuntik);
