@@ -4,6 +4,9 @@ import world.building.Building;
 import world.building.BuildingEnum;
 import world.building.Hospital;
 import world.building.House;
+import world.exceptions.TimeException;
+import world.exceptions.CharacterException;
+import world.exceptions.BuildingException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +20,10 @@ public class City {
 
     public City(String name) {
         this.name = name;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void setTime(TimeEnum time) {
@@ -35,7 +42,7 @@ public class City {
                 System.out.println("Пришла ночь в " + name);
                 break;
             default:
-                System.out.println("Что-то странное пришло в " + name);
+                throw new TimeException(this, time);
         }
     }
 
@@ -62,9 +69,9 @@ public class City {
         return Objects.hash(name, time, characters, buildings);
     }
 
-    public Character createCharacter(CharacterEnum c) {
+    public Character createCharacter(CharacterEnum character) {
         Character newCharacter;
-        switch (c) {
+        switch (character) {
             case CVETIK:
                 newCharacter = new Character("Цветик", GenderEnum.MALE);
                 break;
@@ -81,16 +88,15 @@ public class City {
                 newCharacter = new Character("Малышка", GenderEnum.FEMALE);
                 break;
             default:
-                System.out.println("Что-то странное только что попыталось появиться");
-                return null;
+                throw new CharacterException(this, character);
         }
         characters.add(newCharacter);
         return newCharacter;
     }
 
-    public Building createBuilding(BuildingEnum b, String name) {
+    public Building createBuilding(BuildingEnum building, String name) {
         Building newBuilding;
-        switch (b) {
+        switch (building) {
             case HOSPITAL:
                 newBuilding = new Hospital(name);
                 break;
@@ -98,8 +104,7 @@ public class City {
                 newBuilding = new House(name);
                 break;
             default:
-                System.out.println("Да таких зданий не существует!");
-                return null;
+                throw new BuildingException(this, building, name);
         }
         buildings.add(newBuilding);
         return newBuilding;
