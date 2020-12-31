@@ -9,27 +9,24 @@ public class House extends Building {
 
     @Override
     public void leave(Character c) {
-        if (!inhabitants.contains(c)) {
-            String action;
-            switch (c.getGender()) {
-                case FEMALE:
-                    action = "была ";
-                    break;
-                case MALE:
-                default:
-                    action = "был ";
-            }
-            System.out.println("Там не " + action + c.getName() + ", он не может покинуть домик");
+        String leaveMessage = getLeaveMessage(c) + "домик \""+name+"\"";
+        if (inhabitants.contains(c)) {
+            inhabitants.remove(c);
+            System.out.println(leaveMessage);
             return;
         }
-        inhabitants.remove(c);
-        System.out.println(c.getName() + " покинул домик \""+name+"\"");
+        System.out.println(leaveMessage);
     }
 
     @Override
     public void enter(Character c) {
-        inhabitants.add(c);
-        System.out.println(c.getName() + " пришёл в домик\""+name+"\"");
+        String enterMessage = getEnterMessage(c) + "домик \""+name+"\"";
+        if (!inhabitants.contains(c)) {
+            inhabitants.add(c);
+            System.out.println(enterMessage);
+            return;
+        }
+        System.out.println(enterMessage);
     }
 
     @Override

@@ -9,6 +9,7 @@ public class Main {
     public static void main(String[] args) {
         City greenCity = new City("Зелёный город");
         Building hospital1  = greenCity.createBuilding(BuildingEnum.HOSPITAL, "Больничка №1");
+        Building houseM     = greenCity.createBuilding(BuildingEnum.HOUSE, ":D");
 
         Character cvetik    = greenCity.createCharacter(CharacterEnum.CVETIK);
         Character vintik    = greenCity.createCharacter(CharacterEnum.VINTIK);
@@ -16,6 +17,7 @@ public class Main {
         Character medunica  = greenCity.createCharacter(CharacterEnum.MEDUNICA);
         Character malyshka  = greenCity.createCharacter(CharacterEnum.MALYSHKA);
 
+        houseM.enter(malyshka);
         hospital1.enter(vintik);
         hospital1.enter(shpuntik);
 
