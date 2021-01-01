@@ -4,6 +4,8 @@ import world.ability.active.*;
 import world.ability.passive.*;
 import world.building.Building;
 import world.building.BuildingEnum;
+import world.exceptions.EnterException;
+import world.exceptions.LeaveException;
 
 public class Main {
     public static void main(String[] args) {
@@ -17,9 +19,13 @@ public class Main {
         Character medunica  = greenCity.createCharacter(CharacterEnum.MEDUNICA);
         Character malyshka  = greenCity.createCharacter(CharacterEnum.MALYSHKA);
 
-        houseM.enter(malyshka);
-        hospital1.enter(vintik);
-        hospital1.enter(shpuntik);
+        try {
+            houseM.enter(malyshka);
+            hospital1.enter(vintik);
+            hospital1.enter(shpuntik);
+        } catch (EnterException e) {
+            System.err.println(e.getMessage());
+        }
 
         greenCity.setTime(TimeEnum.MORNING);
 
@@ -53,8 +59,13 @@ public class Main {
         order.setGender(GenderEnum.FEMALE);
         medunica.addAbility(order);
         medunica.runAbility(order, "поскорее выдать им одежду");
-        hospital1.leave(vintik);
-        hospital1.leave(shpuntik);
+
+        try {
+            hospital1.leave(vintik);
+            hospital1.leave(shpuntik);
+        } catch (LeaveException e) {
+            System.err.println(e.getMessage());
+        }
 
         Walk walk = new Walk();
         walk.setGender(GenderEnum.MALE);
@@ -69,6 +80,12 @@ public class Main {
         shpuntik.addAbility(sing);
         vintik.runAbility(sing, chargeSong);
         shpuntik.runAbility(sing, chargeSong);
+
+        try {
+            houseM.leave(malyshka);
+        } catch (LeaveException e) {
+            System.err.println(e.getMessage());
+        }
 
         Charge charge = new Charge();
         charge.setGender(GenderEnum.MALE);

@@ -2,6 +2,8 @@ package world.building;
 
 import world.Character;
 import world.GenderEnum;
+import world.exceptions.LeaveException;
+import world.exceptions.EnterException;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -11,38 +13,38 @@ public abstract class Building {
     protected String name;
     protected List<Character> inhabitants = new ArrayList<>();
 
-    protected String getLeaveMessage(Character c) {
-        if (!inhabitants.contains(c)) {
-            if (c.getGender() == GenderEnum.FEMALE)
-                return "Там не была " + c.getName() + ", она не может покинуть ";
-            if (c.getGender() == GenderEnum.MALE)
-                return "Там не был " + c.getName() + ", он не может покинуть ";
-            return "Там не были " + c.getName() + ", они не могут покинуть ";
+    protected String getLeaveMessage(Character character) {
+        if (!inhabitants.contains(character)) {
+            if (character.getGender() == GenderEnum.FEMALE)
+                return "Там не была " + character.getName() + ", она не может покинуть ";
+            if (character.getGender() == GenderEnum.MALE)
+                return "Там не был " + character.getName() + ", он не может покинуть ";
+            return "Там не были " + character.getName() + ", они не могут покинуть ";
         }
-        if (c.getGender() == GenderEnum.FEMALE)
-            return c.getName() + " покинула ";
-        if (c.getGender() == GenderEnum.MALE)
-            return c.getName() + " покинул ";
-        return c.getName() + " покинули ";
+        if (character.getGender() == GenderEnum.FEMALE)
+            return character.getName() + " покинула ";
+        if (character.getGender() == GenderEnum.MALE)
+            return character.getName() + " покинул ";
+        return character.getName() + " покинули ";
     }
 
-    protected String getEnterMessage(Character c) {
-        if (inhabitants.contains(c)) {
-            if (c.getGender() == GenderEnum.FEMALE)
-                return "Там уже есть " + c.getName() + ", она не может прийти в ";
-            if (c.getGender() == GenderEnum.MALE)
-                return "Там уже есть " + c.getName() + ", он не может прийти в ";
-            return "Там уже есть " + c.getName() + ", они не могут прийти в ";
+    protected String getEnterMessage(Character character) {
+        if (inhabitants.contains(character)) {
+            if (character.getGender() == GenderEnum.FEMALE)
+                return "Там уже есть " + character.getName() + ", она не может прийти в ";
+            if (character.getGender() == GenderEnum.MALE)
+                return "Там уже есть " + character.getName() + ", он не может прийти в ";
+            return "Там уже есть " + character.getName() + ", они не могут прийти в ";
         }
-        if (c.getGender() == GenderEnum.FEMALE)
-            return c.getName() + " пришла в ";
-        if (c.getGender() == GenderEnum.MALE)
-            return c.getName() + " пришёл в ";
-        return c.getName() + " пришли в ";
+        if (character.getGender() == GenderEnum.FEMALE)
+            return character.getName() + " пришла в ";
+        if (character.getGender() == GenderEnum.MALE)
+            return character.getName() + " пришёл в ";
+        return character.getName() + " пришли в ";
     }
 
-    public abstract void leave(Character c);
-    public abstract void enter(Character c);
+    public abstract void leave(Character character) throws LeaveException;
+    public abstract void enter(Character character) throws EnterException;
 
     public Building(String name) {
         this.name = name;
