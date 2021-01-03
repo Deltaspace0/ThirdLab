@@ -93,5 +93,17 @@ public class Main {
         shpuntik.addAbility(charge);
         vintik.runAbility(charge);
         shpuntik.runAbility(charge);
+
+        PassiveAbility lope = new PassiveAbility() {
+            @Override
+            public String run() {
+                return "бежала вприпрыжку сзади";
+            }
+
+            @Override
+            public void setGender(GenderEnum gender) {}
+        };
+        malyshka.addAbility(lope);
+        malyshka.runAbility(lope);
     }
 }
