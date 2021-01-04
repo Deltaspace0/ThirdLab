@@ -8,10 +8,10 @@ import world.ability.passive.PassiveAbility;
 import world.ability.active.ActiveAbility;
 
 public class Character {
-    private final String name;
-    private final GenderEnum gender;
-    private final List<PassiveAbility> passiveAbilities = new ArrayList<>();
-    private final List<ActiveAbility<?>> activeAbilities = new ArrayList<>();
+    protected final String name;
+    protected final GenderEnum gender;
+    protected final List<PassiveAbility> passiveAbilities = new ArrayList<>();
+    protected final List<ActiveAbility<?>> activeAbilities = new ArrayList<>();
 
     public Character(String name, GenderEnum gender) {
         this.name = name;
@@ -32,17 +32,13 @@ public class Character {
         }
     }
 
-    public GenderEnum getGender() {
-        return gender;
-    }
-
     public <T> void runAbility(ActiveAbility<T> ability, T item) {
         if (checkAbility(activeAbilities, ability)) {
             System.out.println(name + " " + ability.run(item));
         }
     }
 
-    private <A> boolean checkAbility(List<A> abilities, A ability) {
+    protected <A> boolean checkAbility(List<A> abilities, A ability) {
         boolean abilityExists = abilities.contains(ability);
         if (!abilityExists)
             System.out.println(name + " не может использовать способность " + ability);
@@ -51,6 +47,10 @@ public class Character {
 
     public String getName() {
         return name;
+    }
+
+    public GenderEnum getGender() {
+        return gender;
     }
 
     @Override

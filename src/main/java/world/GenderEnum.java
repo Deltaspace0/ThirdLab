@@ -2,5 +2,6 @@ package world;
 
 public enum GenderEnum {
     MALE,
-    FEMALE
+    FEMALE,
+    MULTIPLE
 }

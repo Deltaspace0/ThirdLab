@@ -56,4 +56,8 @@ public class Compose implements ActiveAbility<String> {
         return song;
     }
 
+    @Override
+    public GenderEnum getGender() {
+        return gender;
+    }
 }

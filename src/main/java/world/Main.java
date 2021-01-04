@@ -1,5 +1,8 @@
 package world;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import world.ability.active.*;
 import world.ability.passive.*;
 import world.building.Building;
@@ -8,16 +11,83 @@ import world.exceptions.EnterException;
 import world.exceptions.LeaveException;
 
 public class Main {
+    private static class MessageHandler {
+        private static final List<String> names = new ArrayList<>();
+        private static String singleMessage;
+        private static String multipleMessage;
+
+        public static void addMessage(String name, PassiveAbility ability) {
+            GenderEnum originalGender = ability.getGender();
+            ability.setGender(GenderEnum.MULTIPLE);
+            String message = ability.run();
+            ability.setGender(originalGender);
+            if (names.isEmpty() || !message.equals(multipleMessage)) {
+                connectAndPrint();
+                singleMessage = ability.run();
+                multipleMessage = message;
+            }
+            names.add(name);
+        }
+
+        public static <T> void addMessage(String name, ActiveAbility<T> ability, T item) {
+            GenderEnum originalGender = ability.getGender();
+            ability.setGender(GenderEnum.MULTIPLE);
+            String message = ability.run(item);
+            ability.setGender(originalGender);
+            if (names.isEmpty() || !message.equals(multipleMessage)) {
+                connectAndPrint();
+                singleMessage = ability.run(item);
+                multipleMessage = message;
+            }
+            names.add(name);
+        }
+
+        public static void connectAndPrint() {
+            if (names.isEmpty())
+                return;
+            int namesCount = names.size();
+            if (namesCount == 1) {
+                System.out.println(names.get(0) + " " + singleMessage);
+            } else {
+                StringBuilder multipleName = new StringBuilder();
+                for (int i = 0; i < namesCount-2; i++)
+                    multipleName.append(names.get(i)).append(", ");
+                multipleName.append(names.get(namesCount - 2)).append(" и ").append(names.get(namesCount - 1));
+                System.out.println(multipleName + " " + multipleMessage);
+            }
+            names.clear();
+        }
+    }
+
     public static void main(String[] args) {
+        class HandleableCharacter extends Character {
+            public HandleableCharacter(Character character) {
+                super(character.getName(), character.getGender());
+            }
+
+            @Override
+            public void runAbility(PassiveAbility ability) {
+                if (checkAbility(passiveAbilities, ability)) {
+                    MessageHandler.addMessage(name, ability);
+                }
+            }
+
+            @Override
+            public <T> void runAbility(ActiveAbility<T> ability, T item) {
+                if (checkAbility(activeAbilities, ability)) {
+                    MessageHandler.addMessage(name, ability, item);
+                }
+            }
+        }
         City greenCity = new City("Зелёный город");
         Building hospital1  = greenCity.createBuilding(BuildingEnum.HOSPITAL, "Больничка №1");
         Building houseM     = greenCity.createBuilding(BuildingEnum.HOUSE, ":D");
 
-        Character cvetik    = greenCity.createCharacter(CharacterEnum.CVETIK);
-        Character vintik    = greenCity.createCharacter(CharacterEnum.VINTIK);
-        Character shpuntik  = greenCity.createCharacter(CharacterEnum.SHPUNTIK);
-        Character medunica  = greenCity.createCharacter(CharacterEnum.MEDUNICA);
-        Character malyshka  = greenCity.createCharacter(CharacterEnum.MALYSHKA);
+        Character cvetik    = new HandleableCharacter(greenCity.createCharacter(CharacterEnum.CVETIK));
+        Character vintik    = new HandleableCharacter(greenCity.createCharacter(CharacterEnum.VINTIK));
+        Character shpuntik  = new HandleableCharacter(greenCity.createCharacter(CharacterEnum.SHPUNTIK));
+        Character medunica  = new HandleableCharacter(greenCity.createCharacter(CharacterEnum.MEDUNICA));
+        Character malyshka  = new HandleableCharacter(greenCity.createCharacter(CharacterEnum.MALYSHKA));
 
         try {
             houseM.enter(malyshka);
@@ -48,7 +118,7 @@ public class Main {
         vintik.addAbility(demand);
         shpuntik.addAbility(demand);
         vintik.runAbility(demand, "их сейчас же выписали");
-        shpuntik.runAbility(demand, "их немедленно выписали");
+        shpuntik.runAbility(demand, "их сейчас же выписали");
 
         Fear fear = new Fear();
         fear.setGender(GenderEnum.FEMALE);
@@ -60,19 +130,19 @@ public class Main {
         medunica.addAbility(order);
         medunica.runAbility(order, "поскорее выдать им одежду");
 
-        try {
-            hospital1.leave(vintik);
-            hospital1.leave(shpuntik);
-        } catch (LeaveException e) {
-            System.err.println(e.getMessage());
-        }
-
         Walk walk = new Walk();
         walk.setGender(GenderEnum.MALE);
         vintik.addAbility(walk);
         shpuntik.addAbility(walk);
         vintik.runAbility(walk);
         shpuntik.runAbility(walk);
+
+        try {
+            hospital1.leave(vintik);
+            hospital1.leave(shpuntik);
+        } catch (LeaveException e) {
+            System.err.println(e.getMessage());
+        }
 
         Sing sing = new Sing();
         sing.setGender(GenderEnum.MALE);
@@ -95,15 +165,26 @@ public class Main {
         shpuntik.runAbility(charge);
 
         PassiveAbility lope = new PassiveAbility() {
+            private GenderEnum gender;
+
             @Override
             public String run() {
                 return "бежала вприпрыжку сзади";
             }
 
             @Override
-            public void setGender(GenderEnum gender) {}
+            public void setGender(GenderEnum gender) {
+                this.gender = gender;
+            }
+
+            @Override
+            public GenderEnum getGender() {
+                return gender;
+            }
         };
         malyshka.addAbility(lope);
         malyshka.runAbility(lope);
+
+        MessageHandler.connectAndPrint();
     }
 }

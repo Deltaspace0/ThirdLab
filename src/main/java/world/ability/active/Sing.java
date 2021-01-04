@@ -48,4 +48,9 @@ public class Sing implements ActiveAbility<Song> {
     public void setGender(GenderEnum gender) {
         this.gender = gender;
     }
+
+    @Override
+    public GenderEnum getGender() {
+        return gender;
+    }
 }

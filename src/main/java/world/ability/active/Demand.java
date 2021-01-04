@@ -47,4 +47,9 @@ public class Demand implements ActiveAbility<String> {
     public void setGender(GenderEnum gender) {
         this.gender = gender;
     }
+
+    @Override
+    public GenderEnum getGender() {
+        return gender;
+    }
 }

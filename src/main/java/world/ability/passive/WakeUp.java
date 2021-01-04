@@ -43,4 +43,9 @@ public class WakeUp implements PassiveAbility {
     public void setGender(GenderEnum gender) {
         this.gender = gender;
     }
+
+    @Override
+    public GenderEnum getGender() {
+        return gender;
+    }
 }
