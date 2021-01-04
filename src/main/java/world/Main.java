@@ -151,18 +151,37 @@ public class Main {
         vintik.runAbility(sing, chargeSong);
         shpuntik.runAbility(sing, chargeSong);
 
-        try {
-            houseM.leave(malyshka);
-        } catch (LeaveException e) {
-            System.err.println(e.getMessage());
-        }
-
         Charge charge = new Charge();
         charge.setGender(GenderEnum.MALE);
         vintik.addAbility(charge);
         shpuntik.addAbility(charge);
         vintik.runAbility(charge);
         shpuntik.runAbility(charge);
+
+        wakeUp.setGender(GenderEnum.FEMALE);
+        malyshka.addAbility(wakeUp);
+        malyshka.runAbility(wakeUp);
+
+        ActiveAbility<String> lookout = new ActiveAbility<String>() {
+            private GenderEnum gender;
+
+            @Override
+            public String run(String item) {
+                return "стала выглядывать из " + item;
+            }
+
+            @Override
+            public void setGender(GenderEnum gender) {
+                this.gender = gender;
+            }
+
+            @Override
+            public GenderEnum getGender() {
+                return gender;
+            }
+        };
+        malyshka.addAbility(lookout);
+        malyshka.runAbility(lookout, "окна");
 
         PassiveAbility lope = new PassiveAbility() {
             private GenderEnum gender;
@@ -184,6 +203,12 @@ public class Main {
         };
         malyshka.addAbility(lope);
         malyshka.runAbility(lope);
+
+        try {
+            houseM.leave(malyshka);
+        } catch (LeaveException e) {
+            System.err.println(e.getMessage());
+        }
 
         MessageHandler.connectAndPrint();
     }
